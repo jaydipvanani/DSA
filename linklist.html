@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        class Node {
+            constructor(data) {
+                this.head = {
+                    value: data,
+                    next: null,
+                };
+                this.tail = this.head;
+                this.size = 1;
+            }
+
+
+            add(data) {
+                let newNode = { value: data, next: null };
+                this.tail.next = newNode;
+                this.tail = newNode;
+                this.size += 1;
+            }
+            print() {
+                let count = 0;
+                let current = this.head;
+                while (count < this.size) {
+                    console.log(current, "is current ");
+                    current = current.next;
+                    count++;
+                }
+
+            }
+            delete(number) {
+                if (this.head === null || number >= this.size) {
+                    return false;
+                }
+                if (number == 0) {
+                    this.head = this.head.next;
+                    this.tail.next = this.head;
+                }
+                else {
+                    let previous = null;
+                    let current = this.head;
+                    let index = 0;
+                    while (index++ < number) {
+                        previous = current;
+                        current = current.next;
+                    }
+                    previous.next = current.next;
+                    if (current.next == null) {
+                        this.tail = previous;
+                    }
+                }
+            }
+        }
+
+        const node = new Node(100);
+        node.add(200);
+        node.add(300);
+        node.add(400);
+        node.add(500);
+        node.add(600);
+        node.delete(2);
+        // node.print();
+
+
+
+
+        console.log(node);
+
+    </script>
+</body>
+
+</html>
